@@ -1,6 +1,0 @@
-print('Hello! My name is Awesome Computer.') 
-name = input('What is your name?') 
-print('It is good to meet you ' + name + '.')  
-input('How are you today?') 
-print('Okay.') 
-print('I am doing great!') 
