@@ -151,8 +151,9 @@ while True:
         if turn == 'player':
             # Player's turn.
             drawBoard(theBoard)
-            move = getPlayerMove(theBoard)
-            makeMove(theBoard, playerLetter, move)
+            #move = getPlayerMove(theBoard)
+            move = getComputerMove(theBoard, computerLetter)
+            makeMove(theBoard, computerLetter, move)
 
             if isWinner(theBoard, playerLetter):
                 drawBoard(theBoard)
