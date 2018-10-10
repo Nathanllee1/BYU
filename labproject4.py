@@ -65,7 +65,7 @@ words={
 def getRandomWord(wordDict):
     wordKey = random.choice(list(wordDict.keys()))
     wordIndex = random.randint(0, len(wordDict[wordKey]) - 1)
-    return [wordDict[wordKey][wordIndex]]
+    return [wordDict[wordKey][wordIndex], wordKey]
 
 def displayBoard(POTATOPICS, missedLetters, correctLetters, secretWord):
     print(POTATOPICS[len(missedLetters)])

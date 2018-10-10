@@ -3,7 +3,8 @@ This script picks a joke or a showerthought from reddit and prints it to the con
 
 Activate a virtual environment and install dependencies
 $pipenv shell
-$pip install requirements.txt
+or other virtualenv
+$pip install -r requirements.txt
 '''
 
 import random
@@ -25,28 +26,32 @@ sortbytop = selectedsub.top
 
 textbank = []
 
+limit = 20
+
 #for showerthouts (You only need the title)
 def showerthoughts():
-    for submission in sortbytop(limit=20):
+    for submission in sortbytop(limit):
         textbank.append(submission.title)
-    picked = textbank[random.randint(0, len(textbank))]
-    print picked
+    picked = textbank[random.randint(0, limit)]
+    return picked
 
 #for jokes (You need the title and body)
 def jokes():
-    for submission in sortbytop(limit=20):
+    for submission in sortbytop(limit):
         textbank.append(submission.title + " " + submission.body)
         #textbank["title"].append(submission.title)
         #textbank["body"].append(submission.selftext)
-    return textbank[random.randint(0, len(textbank))]
-
+    return textbank[random.randint(0, limit)]
+print(showerthoughts)
 #run scripts
 if selection == 'A':
     print ("I'm picking a spicy piece of text from r/jokes")
-    showerthoughts
+    print (showerthoughts)
     print (textbank)
 elif selection == "B":
     print ("I'm picking a spicy piece of text from r/showerthoughts")
     print(jokes)
-    
+else:
+    print('Enter a letter try again')
 #Most of it works, but it's not appendinig the list correctly resulting in it failing.  The structure works and the api requests are fine
+#I'm not sure why it's not working, might need some help...I'm not sure if it's the python, because it seems right, but I don't know.

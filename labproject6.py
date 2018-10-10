@@ -1,7 +1,7 @@
 import random
-def getSecretNum(numDigits):
+def getSecretNum(numDigits, base):
     # Returns a string that is numDigits long, made up of unique random digits.
-    numbers = list(range(10))
+    numbers = list(range(base))
     random.shuffle(numbers)
     secretNum = ''
     for i in range(numDigits):
@@ -26,15 +26,15 @@ def getClues(guess, secretNum):
     clue.sort()
     return ' '.join(clue)
 
-def isOnlyDigits(num):
+def isOnlyDigits(num, base):
     # Returns True if num is a string made up only of digits. Otherwise returns False.
     if num == '':
         return False
 
+    base_String_Elements = ''.join(map(str, list(range(base))))
     for i in num:
-        if i not in '0 1 2 3 4 5 6 7 8 9'.split():
+        if i not in base_String_Elements:
             return False
-
     return True
 
 def playAgain():
@@ -45,6 +45,8 @@ def playAgain():
 NUMDIGITS = 3
 MAXGUESS = 10
 
+
+
 print('I am thinking of a %s-digit number. Try to guess what it is.' % (NUMDIGITS))
 print('Here are some clues:')
 print('When I say:    That means:')
@@ -53,13 +55,20 @@ print('  Fermi        One digit is correct and in the right position.')
 print('  Bagels       No digit is correct.')
 
 while True:
-    secretNum = getSecretNum(NUMDIGITS)
+    print('WELCOME TO BAGELS')
+    print(' ')
+
+    NUMDIGITS = int(input('Enter the number of digits in the secret number:'))
+    MAXGUESS = int(input('Enter the number of guesses you would like to try:'))
+    BASE = int(input('Enter a base number system from 5 to 10 to use:'))
+
+    secretNum = getSecretNum(NUMDIGITS, BASE)
     print('I have thought up a number. You have %s guesses to get it.' % (MAXGUESS))
 
     numGuesses = 1
     while numGuesses <= MAXGUESS:
         guess = ''
-        while len(guess) != NUMDIGITS or not isOnlyDigits(guess):
+        while len(guess) != NUMDIGITS or not isOnlyDigits(guess, BASE):
             print('Guess #%s: ' % (numGuesses))
             guess = input()
 
