@@ -12,11 +12,11 @@ def drawBoard(board):
 
     # print the numbers across the top
     print(hline)
-    print('   ' + ('0123456789' * 6))
+    print('   ' + ('0123456789' * 4))
     print()
 
     # print each of the 15 rows
-    for i in range(15):
+    for i in range(10):
         # single-digit numbers need to be padded with an extra space
         if i < 10:
             extraSpace = ' '
@@ -26,23 +26,23 @@ def drawBoard(board):
 
     # print the numbers across the bottom
     print()
-    print('   ' + ('0123456789' * 6))
+    print('   ' + ('0123456789' * 4))
     print(hline)
 
 
 def getRow(board, row):
     # Return a string from the board data structure at a certain row.
     boardRow = ''
-    for i in range(60):
+    for i in range(40):
         boardRow += board[i][row]
     return boardRow
 
 def getNewBoard():
     # Create a new 60x15 board data structure.
     board = []
-    for x in range(60): # the main list is a list of 60 lists
+    for x in range(40): # the main list is a list of 60 lists
         board.append([])
-        for y in range(15): # each list in the main list has 15 single-character strings
+        for y in range(10): # each list in the main list has 15 single-character strings
             # use different characters for the ocean to make it more readable.
             if random.randint(0, 1) == 0:
                 board[x].append('~')
@@ -167,12 +167,16 @@ print()
 print('Would you like to view the instructions? (yes/no)')
 if input().lower().startswith('y'):
     showInstructions()
+devicelim = input('How many sonar devices do you want?')
+sonarDevices = int(devicelim)
+
+chestlim = int(input('How many chests do you want to find?'))
 
 while True:
     # game setup
-    sonarDevices = 16
+
     theBoard = getNewBoard()
-    theChests = getRandomChests(3)
+    theChests = getRandomChests(chestlim)
     drawBoard(theBoard)
     previousMoves = []
 
