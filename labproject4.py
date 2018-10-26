@@ -45,16 +45,16 @@ POTATOPICS = ['''
   |   |
   /\  |
  _| |_|
-  | | |
-   _  |
+  |_| |
+      |
 =========''', '''
 
   +---+
   |   |
   /\  |
  _| |_|
-  | | |
-  / _\|
+  |_| |
+  /  \|
 =========''']
 words={
     'Colors':'red orange yellow green blue indigo violet white black brown'.split(),
@@ -65,10 +65,10 @@ words={
 def getRandomWord(wordDict):
     wordKey = random.choice(list(wordDict.keys()))
     wordIndex = random.randint(0, len(wordDict[wordKey]) - 1)
-    return [wordDict[wordKey][wordIndex], wordKey]
+    return wordDict[wordKey][wordIndex]
 
-def displayBoard(POTATOPICS, missedLetters, correctLetters, secretWord):
-    print(POTATOPICS[len(missedLetters)])
+def displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord):
+    print(HANGMANPICS[len(missedLetters)])
     print()
 
     print('Missed letters:', end=' ')
@@ -137,7 +137,7 @@ while True:
         # Check if player has guessed too many times and lost
         if len(missedLetters) == len(POTATOPICS) - 1:
             displayBoard(POTATOPICS, missedLetters, correctLetters, secretWord)
-            print('You have run out of guesses!\nAfter ' + str(len(missedLetters)) + ' missed guesses and ' + str(len(correctLetters)) + ' correct guesses, the word was "' + secretWord + '"')
+            print('You have run out of guesses! After ' + str(len(missedLetters)) + ' missed guesses and ' + str(len(correctLetters)) + ' correct guesses, the word was "' + secretWord + '"')
             gameIsDone = True
 
     # Ask the player if they want to play again (but only if the game is done).
